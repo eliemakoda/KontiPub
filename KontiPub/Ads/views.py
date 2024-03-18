@@ -12,7 +12,11 @@ categoryNames=[
 
 # Create your views here.
 def Index(request): 
-    return render(request, "index.html")
+    events= Ads.objects.all()[:8]
+    return render(request, "index.html", context={
+        "events": events,
+        "categories":categoryNames
+    })
 
 def Beauty(request):
     events = Ads.objects.filter(category="Beauté")
@@ -83,4 +87,6 @@ def Register(request):
     return render(request, "signup.html", context=obj)
 
 def AdsDetail(request, id):
-    return render(request, "browse-ads-details.html")
+    target= Ads.objects.get(pk=id)
+    ads= Ads.objects.filter(category=target.category)
+    return render(request, "browse-ads-details.html", context={"event":target, "ads":ads})

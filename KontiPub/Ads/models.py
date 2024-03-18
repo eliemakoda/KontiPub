@@ -11,7 +11,6 @@ class Ads(models.Model):
     admin= models.ForeignKey(Administrateur, on_delete=models.CASCADE)
     price= models.IntegerField()
     description=models.CharField(max_length=400)
-    # feature= models.CharField(max_length=400)
     address= models.CharField(max_length=50)
     country=models.CharField(max_length=100)
     state= models.CharField(max_length=20, default="cameroun")

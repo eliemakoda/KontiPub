@@ -184,11 +184,11 @@
 
 
         <!-- Page Title -->
-        <section class="page-title-2" style="background-image: url({% static 'images/background/page-title-2.jpg'%});">
+        <section class="page-title-2" style="background-image: url({{ event.avatar.url }});">
             <div class="auto-container">
                 <div class="content-box">
-                    <h1>Dell Laptop, Core i9</h1>
-                    <span class="category"><i class="fas fa-tags"></i>Dell Laptop, Core i9</span>
+                    <h1>{{event.productName}}</h1>
+                    <span class="category"><i class="fas fa-tags"></i>{{event.category}}</span>
                 </div>
                 <div class="info-box clearfix">
                     <div class="left-column pull-left clearfix">
