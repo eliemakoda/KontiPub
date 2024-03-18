@@ -53,13 +53,12 @@
             <div class="top-inner">
               <ul class="info-list clearfix">
                 <li>
-                  <i class="fas fa-map-marker-alt"></i>Discover St, New York, NY
-                  10012, USA
+                  <i class="fas fa-map-marker-alt"></i>Douala, Cameroun
                 </li>
-                <li><i class="fas fa-clock"></i>Mon - Sat 9.00 - 18.00</li>
+                <li><i class="fas fa-clock"></i>24/7</li>
                 <li>
                   <i class="fas fa-phone"></i
-                  ><a href="tel:2512353256">+251-235-3256</a>
+                  ><a href="tel:+237 691464174">+237 691464174</a>
                 </li>
               </ul>
               <div class="right-column clearfix">
@@ -68,19 +67,17 @@
                     <a href="index-4.html"><i class="fab fa-facebook-f"></i></a>
                   </li>
                   <li>
-                    <a href="index-4.html"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/kon.tipub"><i class="fab fa-instagram"></i></a>
                   </li>
                   <li>
-                    <a href="index-4.html"
-                      ><i class="fab fa-google-plus-g"></i
+                    <a href="Kontipub237@gmail.com"
+                      ><i class="fab fa-facebook-messenger"></i
                     ></a>
                   </li>
-                  <li>
-                    <a href="index-4.html"><i class="fab fa-vimeo-v"></i></a>
-                  </li>
+               
                 </ul>
                 <div class="sign-in">
-                  <a href="signup.html"><i class="fas fa-user"></i>Sign In</a>
+                  <a href="{% url "login" %}"><i class="fas fa-user"></i> Log_ad</a>
                 </div>
               </div>
             </div>
@@ -112,7 +109,7 @@
                       <li class="">
                         <a href="{% url "restauration" %}">Restauration</a>
                       </li>
-                      <li class=""><a href="{% url "night" %}">Nuit</a></li>
+                      <li class=""><a href="{% url "night" %}">Autres</a></li>
 
                       <li class=""><a href="{% url "pricing" %}">Nos Prix</a></li>
                       <li class="">
@@ -131,33 +128,12 @@
             </div>
           </div>
         </div>
-
         <!--sticky Header-->
-        <div class="sticky-header">
-          <div class="auto-container">
-            <div class="outer-box">
-              <div class="logo-box">
-                <figure class="logo">
-                  <a href="index.html"
-                    {% comment %} ><img src="{% static "/images/logo.png" %}" alt="" {% endcomment %}
-                  /></a>
-                </figure>
-              </div>
-              <div class="menu-area">
-                <nav class="main-menu clearfix">
-                  <!--Keep This Empty / Menu will come through Javascript-->
-                </nav>
-              </div>
-              <div class="btn-box">
-                <a href="browse-ads-details.html" class="theme-btn-one"
-                  ><i class="icon-1"></i>Submit Ads</a
-                >
-              </div>
+        
             </div>
           </div>
         </div>
       </header>
-      <!-- main-header end -->
 
       <!-- Mobile Menu  -->
       <div class="mobile-menu">
@@ -359,95 +335,62 @@
 
       <!-- feature-style-two -->
        <!-- category-details -->
-       <section class="category-details bg-color-2">
+       <section class="related-ads">
         <div class="auto-container">
-          <div class="row clearfix">
-            <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
-              <div class="default-sidebar category-sidebar">
-               Nos Annonces
-                
-              </div>
+            <div class="sec-title">
+                <span></span>
+                <h2></h2>
             </div>
-            <div class="col-lg-8 col-md-12 col-sm-12 content-side">
-              <div class="category-details-content">
+            <div class="three-item-carousel owl-carousel owl-theme owl-nav dots-style">
               
-                <div class="category-block wrapper list browse-add">
-                  <div class="list-item feature-style-three pd-0">
-                    {% for event in events %}
-                    <div class="feature-block-one">
-                      <div class="inner-box">
-                        <div class="image">
-                          <figure class="image" style="width=55;
-                          height=45;" >
-                            <img
-                              src="{{ event.avatar.url }}"
-                              alt=""
-                              width="255"
-                              height="45"
-                            />
-                          </figure>
+              {% for ad in events  %}
+                <div class="feature-block-one">
+                    
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image"><img src="{{ ad.avatar.url }}" alt=""></figure>
+                            <div class="shape"></div>
+                            <div class="feature">{{event.category}}</div>
+                            <div class="icon">
+                                <div class="icon-shape"></div>
+                                <i class="icon-16"></i>
+                            </div>
+                            <ul class="rating clearfix">
+                                <li><i class="icon-17"></i></li>
+                                <li><i class="icon-17"></i></li>
+                                <li><i class="icon-17"></i></li>
+                                <li><i class="icon-17"></i></li>
+                                <li><i class="icon-17"></i></li>
+                                <li><a href="index.html">(32)</a></li>
+                            </ul>
+                            <h5>{{ad.price}} FCFA</h5>
                         </div>
                         <div class="lower-content">
-                          <div class="category">
-                            <i class="fas fa-tags"></i>
-                            <p>{{event.category}}</p>
-                          </div>
-                          <h4>
-                            <a href="browse-ads-details.html"
-                              >{{event.city}}, {{event.country}}</a
-                            >
-                          </h4>
-                          <ul class="rating clearfix">
-                            <li><i class="icon-17"></i></li>
-                            <li><i class="icon-17"></i></li>
-                            <li><i class="icon-17"></i></li>
-                            <li><i class="icon-17"></i></li>
-                            <li><i class="icon-17"></i></li>
-                            <li><a href="index.html"></a></li>
-                          </ul>
-                          <ul class="info clearfix">
-                            <li><i class="far fa-clock"></i>{{event.date_event}}</li>
-                            <li>
-                              <i class="fas fa-map-marker-alt"></i>{{ event.address }}
-                            </li>
-                          </ul>
-                          <div class="lower-box">
-                            <h5><span>Prix:</span> {{event.price}} CFA</h5>
-                            <ul class="react-box">
-                              <li>
-                                <a href="index.html"><i class="icon-21"></i></a>
-                              </li>
-                              <li>
-                                <a href="index.html"><i class="icon-22"></i></a>
-                              </li>
-                            </ul>
-                          </div>
+                            <div class="author-box">
+                                <div class="inner">
+                                    <img src="{{ ad.avatar.url }}" alt="">
+                                    <a href="{% url "adsdetails" ad.pk %}"> <h6>{{ad.productName}}<i class="icon-18"></i></h6></a>
+                                    <span>{{ad.category}}</span>
+                                </div>
+                            </div>
+                            <div class="category"><i class="fas fa-tags"></i><p>{{ad.category}}</p></div>
+                            <h3>{{ ad.city }}, {{ ad.country }} </h3>
                         </div>
-                        <div class="btn-box">
-                          <a
-                            href="{% url "adsdetails" event.pk %}"
-                            class="theme-btn-one"
-                            >Details</a
-                          >
-                        </div>
-                      </div>
                     </div>
-                    {% comment %} end {% endcomment %}
-                    {% endfor %}
-                   
-              </div>
+                </a>
+                </div>
+               {% endfor %}
             </div>
-          </div>
         </div>
-      </section>
+    </section>
    
 
       <!-- news-section -->
       <section class="news-section sec-pad">
         <div class="auto-container">
           <div class="sec-title centred">
-            <span>News & Article</span>
-            <h2>Stay Update with Docpro</h2>
+            <span>Nous!</span>
+            <h2>parlons de Nous</h2>
           </div>
           <div class="row clearfix">
             <div class="col-lg-4 col-md-6 col-sm-12 news-block">
@@ -458,60 +401,59 @@
               >
                 <div class="inner-box">
                   <figure class="image-box">
-                    <img src="assets/images/news/news-1.jpg" alt="" />
-                    <a href="blog-details.html"><i class="fas fa-link"></i></a>
+                    <img src="{% static "/images/news/news-1.jpg" %}" alt="" />
+                    <a><i class="fas fa-link"></i></a>
                   </figure>
                   <div class="lower-content">
                     <figure class="admin-thumb">
                       <img src="assets/images/news/admin-1.png" alt="" />
                     </figure>
-                    <span class="category">Electronics</span>
+                    <span class="category">Créativité</span>
                     <h3>
-                      <a href="blog-details.html"
-                        >Including animation in your design system</a
+                      <a 
+                        >Nous sommes Créatif</a
                       >
                     </h3>
                     <p>
-                      Lorem ipsum dolor sit amet consectur adipisicing sed do
-                      eiusmod tempor incididunt labore.
+                      Notre agence de publicité se distingue par sa capacité à penser de manière originale et à proposer des idées novatrices pour répondre aux besoins de Nos clients. Nous   
+                       conçevons des campagnes publicitaires 
+                      percutantes et mémorables qui captent l'attention du public cible.
                     </p>
-                    <span class="post-info"
-                      >By <a href="blog-details.html">Eva Green</a> - October
-                      13, 2020</span
-                    >
+                    
                   </div>
                 </div>
               </div>
             </div>
+           
             <div class="col-lg-4 col-md-6 col-sm-12 news-block">
               <div
-                class="news-block-one wow fadeInDown animated animated"
+                class="news-block-one wow fadeInUp animated animated"
                 data-wow-delay="00ms"
                 data-wow-duration="1500ms"
               >
                 <div class="inner-box">
                   <figure class="image-box">
-                    <img src="assets/images/news/news-2.jpg" alt="" />
-                    <a href="blog-details.html"><i class="fas fa-link"></i></a>
+                    <img src="{% static "/images/news/news-2.jpg" %}" alt="" />
+                    <a ><i class="fas fa-link"></i></a>
                   </figure>
                   <div class="lower-content">
                     <figure class="admin-thumb">
-                      <img src="assets/images/news/admin-2.png" alt="" />
+                      <img src="assets/images/news/admin-1.png" alt="" />
                     </figure>
-                    <span class="category">Electronics</span>
+                    <span class="category">Expertise</span>
                     <h3>
-                      <a href="blog-details.html"
-                        >A digital prescription for the industry.</a
+                      <a 
+                        >Nous sommes des Experts</a
                       >
                     </h3>
                     <p>
-                      Lorem ipsum dolor sit amet consectur adipisicing sed do
-                      eiusmod tempor incididunt labore.
+                      Forts de nos expériences et de nos compétences dans le domaine de la communication,
+                       Nous possédons une expertise pointue pour élaborer 
+                       des stratégies efficaces et adaptées à chaque projet. Nous maîtrisons les différents
+                        leviers de communication et savons comment les utiliser pour atteindre les objectifs fixés.
+
                     </p>
-                    <span class="post-info"
-                      >By <a href="blog-details.html">Eva Green</a> - October
-                      13, 2020</span
-                    >
+                    
                   </div>
                 </div>
               </div>
@@ -524,27 +466,25 @@
               >
                 <div class="inner-box">
                   <figure class="image-box">
-                    <img src="assets/images/news/news-3.jpg" alt="" />
-                    <a href="blog-details.html"><i class="fas fa-link"></i></a>
+                    <img src="{% static "/images/news/news-3.jpg" %}" alt="" />
+                    <a><i class="fas fa-link"></i></a>
                   </figure>
                   <div class="lower-content">
                     <figure class="admin-thumb">
-                      <img src="assets/images/news/admin-3.png" alt="" />
+                      <img src="assets/images/news/admin-1.png" alt="" />
                     </figure>
-                    <span class="category">Electronics</span>
+                    <span class="category">Innovation</span>
                     <h3>
-                      <a href="blog-details.html"
-                        >Strategic & commercial approach with issues.</a
+                      <a 
+                        >Nous avons des idées Innovantes</a
                       >
                     </h3>
                     <p>
-                      Lorem ipsum dolor sit amet consectur adipisicing sed do
-                      eiusmod tempor incididunt labore.
+                      Nous sommes Toujours à la pointe des nouvelles tendances et des technologies émergentes, 
+                      Nous nous distinguons   par notre capacité à innover et à proposer des
+                       solutions créatives et avant-gardistes.
                     </p>
-                    <span class="post-info"
-                      >By <a href="blog-details.html">Eva Green</a> - October
-                      13, 2020</span
-                    >
+                    
                   </div>
                 </div>
               </div>
@@ -555,42 +495,7 @@
       <!-- news-section end -->
 
       <!-- subscribe-section -->
-      <section class="subscribe-section">
-        <div
-          class="pattern-layer"
-          style="background-image: url(assets/images/shape/shape-9.png)"
-        ></div>
-        <div class="auto-container">
-          <div class="row clearfix">
-            <div class="col-lg-6 col-md-6 col-sm-12 text-column">
-              <div class="text">
-                <div class="icon-box"><i class="icon-25"></i></div>
-                <h2>Subscribe to Newsletter</h2>
-                <p>and receive new ads in inbox</p>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 form-column">
-              <form
-                action="http://azim.commonsupport.com/Clasifico/contact.html"
-                method="post"
-                class="subscribe-form"
-              >
-                <div class="form-group">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Inout your email address"
-                    required=""
-                  />
-                  <button type="submit" class="theme-btn-one">
-                    Subscribe Now
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+  
       <!-- subscribe-section end -->
 
       <!-- main-footer -->
@@ -611,36 +516,10 @@
                     </figure>
                     <div class="text">
                       <p>
-                        Lorem ipsum dolor amet consetetur adi pisicing elit sed
-                        eiusm tempor in cididunt ut labore dolore magna aliqua
-                        enim ad minim venitam
+                        Grâce à notre expertise et notre savoir-faire, nous saurons mettre en avant vos produits ou services de manière efficace et innovante.
                       </p>
                     </div>
-                    <ul class="social-links clearfix">
-                      <li>
-                        <a href="index.html"
-                          ><i class="fab fa-facebook-f"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="index.html"><i class="fab fa-twitter"></i></a>
-                      </li>
-                      <li>
-                        <a href="index.html"
-                          ><i class="fab fa-instagram"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="index.html"
-                          ><i class="fab fa-google-plus-g"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="index.html"
-                          ><i class="fab fa-linkedin-in"></i
-                        ></a>
-                      </li>
-                    </ul>
+                  
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
@@ -650,12 +529,12 @@
                     </div>
                     <div class="widget-content">
                       <ul class="links-list clearfix">
-                        <li><a href="index.html">About Us</a></li>
-                        <li><a href="index.html">Listing</a></li>
-                        <li><a href="index.html">How It Works</a></li>
-                        <li><a href="index.html">Our Services</a></li>
-                        <li><a href="index.html">Our Blog</a></li>
-                        <li><a href="index.html">Contact Us</a></li>
+                        <li><a href="{% url "about" %}">A Propos</a></li>
+                        <li><a href="{% url "contact" %}">contact</a></li>
+                        <li><a href="{% url "event" %}">Actualité</a></li>
+                        <li><a href="{% url "restauration" %}">restauration</a></li>
+                        <li><a href="{% url "night" %}">Autres</a></li>
+                        <li><a href="{% url "beauty" %}">Beauté</a></li>
                       </ul>
                     </div>
                   </div>
@@ -663,14 +542,14 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                   <div class="footer-widget post-widget">
                     <div class="widget-title">
-                      <h3>Top News</h3>
+                      <h3>Kontipub237</h3>
                     </div>
                     <div class="post-inner">
                       <div class="post">
                         <figure class="post-thumb">
                           <img
-                            src="assets/images/resource/footer-post-1.jpg"
-                            alt=""
+                          src="{% static 'images/resource/footer-post-1.jpg' %}"
+                          alt=""
                           />
                           <a href="blog-details.html"
                             ><i class="fas fa-link"></i
@@ -678,15 +557,15 @@
                         </figure>
                         <h5>
                           <a href="blog-details.html"
-                            >The Added Value Social Worker</a
+                            >Ajoutez de la valeur à votre buisiness</a
                           >
                         </h5>
-                        <p>Mar 25, 2020</p>
+                        <p>ouvert 24/7</p>
                       </div>
                       <div class="post">
                         <figure class="post-thumb">
                           <img
-                            src="assets/images/resource/footer-post-2.jpg"
+                            src="{% static 'images/resource/footer-post-2.jpg' %}"
                             alt=""
                           />
                           <a href="blog-details.html"
@@ -694,9 +573,9 @@
                           ></a>
                         </figure>
                         <h5>
-                          <a href="blog-details.html">Ways to Increase Trust</a>
+                          <a href="blog-details.html">Votre satisfaction une Priorié!</a>
                         </h5>
-                        <p>Mar 24, 2020</p>
+                        <p>24/7</p>
                       </div>
                     </div>
                   </div>
@@ -710,15 +589,15 @@
                       <ul class="info-list clearfix">
                         <li>
                           <i class="fas fa-map-marker-alt"></i>
-                          Flat 20, Reynolds Neck, North Helenaville, FV77 8WS
+                         Douala, Cameroun 
                         </li>
                         <li>
                           <i class="fas fa-microphone"></i>
-                          <a href="tel:23055873407">+2(305) 587-3407</a>
+                          <a href="tel:+237 691464174">+237 691464174</a>
                         </li>
                         <li>
                           <i class="fas fa-envelope"></i>
-                          <a href="mailto:info@example.com">info@example.com</a>
+                          <a href="mailto:info@example.com">Kontipub237@gmail.com</a>
                         </li>
                       </ul>
                     </div>
@@ -728,22 +607,7 @@
             </div>
           </div>
         </div>
-        <div class="footer-bottom">
-          <div class="auto-container">
-            <div class="footer-inner clearfix">
-              <div class="copyright pull-left">
-                <p>
-                  <a href="index.html">Clasifico</a> &copy; 2020 All Right
-                  Reserved
-                </p>
-              </div>
-              <ul class="footer-nav pull-right clearfix">
-                <li><a href="index.html">Terms of Service</a></li>
-                <li><a href="index.html">Privacy Policy</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+     
       </footer>
       <!-- main-footer end -->
 
@@ -767,8 +631,6 @@
 
     <!-- main-js -->
     <script src="{% static 'js/script.js' %}"></script>
-  </body>
-  <!-- End of .page_wrapper -->
 
-  <!-- Mirrored from azim.commonsupport.com/Clasifico/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Mar 2024 10:10:29 GMT -->
+  <!-- Mirrored from azim.commonsupport.com/Clasifico/browse-ads-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Mar 2024 10:16:55 GMT -->
 </html>

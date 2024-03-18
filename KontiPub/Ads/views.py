@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from .models import Administrateur, Ads
 import os
 from django.conf import settings
+from django.contrib import messages
+from django.core.mail import send_mail,EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 categoryNames=[
     "Evenement",
@@ -9,6 +13,20 @@ categoryNames=[
     "Beauté",
     "Nuit"
 ]
+def sendmails( tmp):
+        my_subject = "Email de KONTIPUB"
+        my_recepient = ["fokaalinegrace@gmail.com"] #replace by tmp.email
+        html_message = render_to_string("email.html", context=tmp)
+        plain_message = strip_tags(html_message)
+        message = EmailMultiAlternatives(
+            subject=my_subject,
+            body=plain_message,
+            from_email=settings.EMAIL_HOST_USER,
+            to=my_recepient
+        )
+        #  {"username":username,"email":email, "phone":phone,"subject":subject,"message":message}
+        message.attach_alternative(html_message, "text/html")
+        message.send(fail_silently=False)
 
 # Create your views here.
 def Index(request): 
@@ -38,12 +56,31 @@ def Pricing(request):
     return render(request, "pricing.html")
 
 def Contact(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        tmp_data= {"username":username,"email":email, "phone":phone,"subject":subject,"message":message}
+        sendmails(tmp_data)
     return render(request, "contact.html")
 
 def About(request):
     return render(request, "about.html")
 
 def Login(request):
+    if request.method == "POST":
+        email= request.POST.get("email")
+        password= request.POST.get('password')
+        print("password: ", password)
+        print("Email: ", email)
+        try:
+            ad= Administrateur.objects.get(email=email,password=password )
+            obj={"categories":categoryNames}
+            return render(request,"signup.html",context=obj)    
+        except Administrateur.DoesNotExist:
+            redirect('login')
     return render(request, "login.html")
 
 def Register(request):
@@ -90,3 +127,5 @@ def AdsDetail(request, id):
     target= Ads.objects.get(pk=id)
     ads= Ads.objects.filter(category=target.category)
     return render(request, "browse-ads-details.html", context={"event":target, "ads":ads})
+
+
